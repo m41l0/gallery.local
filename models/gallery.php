@@ -4,9 +4,7 @@ require_once __DIR__ . '/../functions/sql.php';
 
 function Images_getAll()
 {
-    //"SELECT `id`, `thumb_src`, `file_name`, `views` FROM `gallery` ORDER BY `views` DESC") // Запрос из старой функции
-
-    $sql = 'SELECT * FROM gallery';
+    $sql = "SELECT * FROM `gallery` ORDER BY `views` DESC";
     return Sql_query($sql);
 }
 

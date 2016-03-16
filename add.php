@@ -34,4 +34,4 @@ if (isset($_FILES)) {
     }
 }
 
-include __DIR__ . '/views/upload.php';
+//include __DIR__ . '/views/upload.php';
