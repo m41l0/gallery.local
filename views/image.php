@@ -7,7 +7,7 @@
 </head>
 <body>
 
-<?php //var_dump($pic);die; ?>
+<?php  ?>
 <div class="inner">
     <img src="<?= $pic['0']['img_path']; ?>" alt="<?= $pic['0']['file_name']; ?>"><br>
     <p><b>Количество просмотров: </b><?= $pic['0']['views'] ?></p>

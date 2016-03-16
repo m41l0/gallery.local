@@ -8,7 +8,7 @@ if (isset($_FILES)) {
     $data = [];
 
     if (!empty($_FILES)) {
-        $result = File_upload('image');
+        $result = fileUpload('image');
         if (false !== $result) {
             $data['img_path'] = './img/' . $result;
             $data['thumb_path'] = './img/thumb/' . 'thmb_' . $result;
@@ -26,16 +26,18 @@ if (isset($_FILES)) {
     }
 
     if ( (isset($data['img_path']) && isset($data['file_name'])) and
-         (0 == RowCount($result))
+         (0 == rowCount($result)) // Ищет в базе имя файла, если такого нет - добавлеят запись
        )
     {
-        Images_insert($data);
+        imagesInsert($data);
+        header('Location: /');
+    }
+
+    if (isset($_GET['id'])) {
+        $pic = viewPic($_GET['id']);
+        updateCounter($_GET['id']);
+        include __DIR__ . '/views/image.php';
+    } else {
         header('Location: /');
     }
 }
-$pic = View_pic($_GET['id']);
-//var_dump($pic);die;
-Update_counter($_GET['id']);
-
-
-include __DIR__ . '/views/image.php';

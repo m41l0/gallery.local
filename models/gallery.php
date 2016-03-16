@@ -2,13 +2,13 @@
 
 require_once __DIR__ . '/../functions/sql.php';
 
-function Images_getAll()
+function imagesGetAll()
 {
     $sql = "SELECT * FROM `gallery` ORDER BY `views` DESC";
-    return Sql_query($sql);
+    return sqlQuery($sql);
 }
 
-function Images_insert($data)
+function imagesInsert($data)
 {
 //    var_dump($data);die;
     $sql = "
@@ -17,31 +17,26 @@ function Images_insert($data)
         VALUES
         ('', '" . $data['file_name'] . "', '" . $data['img_path'] . "', '" . $data['thumb_path'] . "')
         ";
-    Sql_exec($sql);
+    sqlExec($sql);
 }
 
-function RowCount($item)
+function rowCount($item)
 {
-    $link = Sql_connect();
+    $link = sqlConnect();
     $sql = "SELECT `id` FROM `gallery` WHERE `file_name` = '$item'";
     return mysqli_num_rows(mysqli_query($link, $sql));
 }
 
 // Счетчик просмотров
-function Update_counter($id)
+function updateCounter($id)
 {
     $sql = "UPDATE `gallery` SET `views`=`views`+1 WHERE `id`='$id'";
-    Sql_exec($sql);
+    sqlExec($sql);
 }
 
-function View_pic($id)
+// Выбор картинки по id
+function viewPic($id)
 {
-//    $link = Sql_connect();
-
     $sql = "SELECT `img_path`, `views`, `file_name` FROM `gallery` WHERE `id` = '$id'";
-    return Sql_query($sql);
-
-//    $result = mysqli_query($link, $sql);
-//    $row = mysqli_fetch_assoc($result);
-//    return $row;
+    return sqlQuery($sql);
 }

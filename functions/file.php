@@ -2,37 +2,32 @@
 
 include_once __DIR__ . '/img_resize.php';
 
-function File_upload($field)
+function fileUpload($field)
 {
-    if (empty($_FILES))
+    if (empty($_FILES)) // Если массив пустой
         return false;
-    if (0 != $_FILES[$field]['error'])
+    if (0 != $_FILES[$field]['error']) // Если возникла ошибка
         return false;
-    if (($_FILES[$field]['size'] > (512 * 1024)))
+    if (!(file_exists(__DIR__ . '/../img/') and file_exists(__DIR__ . '/../img/thumb/'))) // Проверка существования каталогов
+        if (!mkdir(__DIR__ . '/../img/thumb/', 0777, true)) // Создание каталогов
+            die('Failed to create folders...');
+    if (file_exists(__DIR__ . '/../img/' . $_FILES[$field]['name'])) // Проверяет существует ли файл
         return false;
-    if ((stristr($_FILES[$field]['type'], '/', true) != 'image'))
+    if (($_FILES[$field]['size'] > (512 * 1024))) // Проверка на размер файла
         return false;
-    if (is_uploaded_file($_FILES[$field]['tmp_name'])) {
+    if ((stristr($_FILES[$field]['type'], '/', true) != 'image')) // Изображение ли
+        return false;
+    if (is_uploaded_file($_FILES[$field]['tmp_name'])) { // Если файл загружен, то перемещаем
         $result = move_uploaded_file( // return bool
             $_FILES[$field]['tmp_name'],
             __DIR__ . '/../img/' . $_FILES[$field]['name']
         );
-        if (!$result) {
+        if (!$result) { // Если при перемещении файла возникла ошибка
             return false;
         }
         else {
-//            return './img/' . $_FILES[$field]['name'];
-            return $_FILES[$field]['name'];
+            return $_FILES[$field]['name']; // Возвращает имя файла
         }
     }
     return false;
 }
-
-//function createDir($dir, $thmb_dir)
-//{
-//    if (!(file_exists($dir) and file_exists($thmb_dir))) {
-//        mkdir($dir);
-//        mkdir($thmb_dir);
-//    }
-//    return;
-//}
