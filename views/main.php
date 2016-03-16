@@ -13,7 +13,7 @@
     <div class="hovergallery">
         <?php foreach ($items as $item): ?>
         <figure>
-            <a href="/show.php?id=<?= $item['id']; ?>" target="_self">
+            <a href="/add.php?id=<?= $item['id']; ?>" target="_self">
                 <img src="<?= $item['thumb_path']; ?>" alt="<?= $item['file_name']; ?>" width="300">
             </a>
             <figcaption>Просмотров: <?php echo $item['views']; ?></figcaption>
@@ -22,7 +22,6 @@
     </div>
 
     <?php include __DIR__ . '/form.php'; ?>
-<!--    <a href="../add.php">Добавить фото</a>-->
 </div>
 </body>
 </html>

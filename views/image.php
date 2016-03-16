@@ -9,21 +9,10 @@
 
 <?php //var_dump($pic);die; ?>
 <div class="inner">
-    <img src="<?= $pic['img_path']; ?>" alt="<?= $pic['file_name']; ?>"><br>
-    <p><b>Количество просмотров: </b><?= $pic['views'] ?></p>
+    <img src="<?= $pic['0']['img_path']; ?>" alt="<?= $pic['0']['file_name']; ?>"><br>
+    <p><b>Количество просмотров: </b><?= $pic['0']['views'] ?></p>
 
     <a href="/">Вернуться в галерею</a>
 </div>
 </body>
 </html>
-
-
-
-<?php
-
-// Счетчик просмотров
-//mysqli_query($link, "UPDATE `gallery` SET `views`=`views`+1 WHERE `id`='{$_GET['id']}'");
-
-//$result = mysqli_query($link, "SELECT `img_src`, `views` FROM `gallery` WHERE `id` = '{$_GET['id']}'");
-//$row = mysqli_fetch_assoc($result);
-?>

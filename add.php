@@ -30,8 +30,12 @@ if (isset($_FILES)) {
        )
     {
         Images_insert($data);
-        header('Location: ./index.php');
+        header('Location: /');
     }
 }
+$pic = View_pic($_GET['id']);
+//var_dump($pic);die;
+Update_counter($_GET['id']);
 
-//include __DIR__ . '/views/upload.php';
+
+include __DIR__ . '/views/image.php';

@@ -36,9 +36,12 @@ function Update_counter($id)
 
 function View_pic($id)
 {
-    $link = Sql_connect();
+//    $link = Sql_connect();
+
     $sql = "SELECT `img_path`, `views`, `file_name` FROM `gallery` WHERE `id` = '$id'";
-    $result = mysqli_query($link, $sql);
-    $row = mysqli_fetch_assoc($result);
-    return $row;
+    return Sql_query($sql);
+
+//    $result = mysqli_query($link, $sql);
+//    $row = mysqli_fetch_assoc($result);
+//    return $row;
 }
