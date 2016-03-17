@@ -14,9 +14,15 @@
         <?php foreach ($items as $item): ?>
         <figure>
             <a href="/add.php?id=<?= $item['id']; ?>" target="_self">
-                <img src="<?= $item['thumb_path']; ?>" alt="<?= $item['file_name']; ?>" width="300">
+                <img src="<?= $item['thumb_path']; ?>" title="<?= $item['title']; ?>" alt="<?= $item['alt']; ?>" width="300">
             </a>
-            <figcaption>Просмотров: <?php echo $item['views']; ?></figcaption>
+            <figcaption>
+                Просмотров: <?= $item['views']; ?><br>
+                Тег 'title': <?= $item['title']; ?><br>
+                Тег 'alt': <?= $item['alt']; ?><br>
+                Дата: <?= $item['date']; ?><br>
+                <a href="/edit.php?id=<?= $item['id']; ?>">Редактировать теги</a>
+            </figcaption>
         </figure>
         <?php endforeach; ?>
     </div>

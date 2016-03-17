@@ -4,13 +4,9 @@
 function sqlConnect()
 {
     include (__DIR__ . '/connect.php');
-// Настройка подключения к БД
-//    $hostname = 'localhost';
-//    $username = 'root';
-//    $password = '';
-//    $dbName = 'test';
 
     $link = mysqli_connect($hostname, $username, $password) or die(mysqli_error($link));
+    mysqli_query($link, 'SET NAMES utf8');
     mysqli_select_db($link, $dbName) or die(mysqli_error($link));
     return $link;
 }
@@ -31,6 +27,18 @@ function sqlQuery($sql)
     $ret = [];
     while (false != $row = mysqli_fetch_assoc($result)) {
         $ret[] = $row;
+    }
+
+    return $ret; // на выходе массив записей из БД
+}
+
+function sqlQueryOneArray($sql)
+{
+    $link = sqlConnect();
+    $result = mysqli_query($link, $sql);
+
+    while (false != $row = mysqli_fetch_assoc($result)) {
+        $ret = $row;
     }
 
     return $ret; // на выходе массив записей из БД

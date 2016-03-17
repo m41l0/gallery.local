@@ -4,7 +4,7 @@
 $hostname = 'localhost';
 $username = 'root';
 $password = '';
-$dbName = 'testik';
+$dbName = 'lmi_db';
 
 // Подключение к серверу
 $link = mysqli_connect($hostname, $username, $password) or die(mysqli_error($link));

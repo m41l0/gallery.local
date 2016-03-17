@@ -23,10 +23,12 @@ if (isset($_FILES)) {
 
     if (!empty($_FILES['image']['name'])) {
         $data['file_name'] = $_FILES['image']['name'];
+        $data['title'] = $_FILES['image']['name'];
+        $data['alt'] = $_FILES['image']['name'];
     }
 
     if ( (isset($data['img_path']) && isset($data['file_name'])) and
-         (0 == rowCount($result)) // Ищет в базе имя файла, если такого нет - добавлеят запись
+         (0 == rowCount($result)) // Если запись в БД отсутствует
        )
     {
         imagesInsert($data);

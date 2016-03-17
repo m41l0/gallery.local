@@ -13,9 +13,10 @@ function imagesInsert($data)
 //    var_dump($data);die;
     $sql = "
         INSERT INTO `gallery`
-        (`id`, `file_name`, `img_path`, `thumb_path`)
+        (`id`, `img_path`, `thumb_path`, `file_name`, `title`, `alt`)
         VALUES
-        ('', '" . $data['file_name'] . "', '" . $data['img_path'] . "', '" . $data['thumb_path'] . "')
+        ('', '" . $data['img_path'] . "', '" . $data['thumb_path'] . "', '" . $data['file_name'] . "',
+         '" . $data['title'] . "', '" . $data['alt'] . "')
         ";
     sqlExec($sql);
 }
@@ -37,6 +38,13 @@ function updateCounter($id)
 // Выбор картинки по id
 function viewPic($id)
 {
-    $sql = "SELECT `img_path`, `views`, `file_name` FROM `gallery` WHERE `id` = '$id'";
-    return sqlQuery($sql);
+    $sql = "SELECT * FROM `gallery` WHERE `id` = '$id'";
+    return sqlQueryOneArray($sql);
+}
+
+// Редактирование тегов
+function tagEdit($title, $alt, $id)
+{
+    $sql = "UPDATE `gallery` SET `title`='$title', `alt`='$alt' WHERE `id`='$id'";
+    sqlExec($sql);
 }

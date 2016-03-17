@@ -29,8 +29,9 @@ function start()
                           thumb_path VARCHAR(255) NOT NULL,
                           file_name VARCHAR(255) NOT NULL,
                           views INT(5) NOT NULL,
-                          date TIMESTAMP NOT NULL,
+                          title VARCHAR(255) NOT NULL,
                           alt VARCHAR(255) NOT NULL,
+                          date TIMESTAMP NOT NULL,
                           PRIMARY KEY (id)
                         )"))
         ) {
